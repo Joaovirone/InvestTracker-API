@@ -1,7 +1,7 @@
 
 #1. Base: Vamos usar uma imagem que já tem o Java 21 instalado
 
-FROM openjdk:21-jdk
+FROM eclipse-temurin:21-jdk
 
 
 #2. Diretório de trabalho: Cria uma pasta dentro do container para nosso app
