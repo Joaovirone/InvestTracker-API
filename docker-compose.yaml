@@ -1,5 +1,25 @@
 services:
+
+  #Serviço 1: Sua aplicação Spring Boot
+  app:
+    build: . # Diz: "Use o Dockerfile que está na pasta atual"
+    container_name: invest-app
+    ports: 
+      - "8080:8080" # Porta do PC : Porta do Container
+
+    environment:
+
+        #Dizemos ao Spring: "O Redis não está em 'localhost', está no host 'redis'"
+      - SPRING_DATA_REDIS_HOST=redis 
+      - SPRING_DATA_REDIS_PORT=6379
+
+    depends_on:
+      - redis # Só liga o app depois que o Redis ligar
+
+      
+  # Serviço 2: O banco de Cache
   redis:
     image: 'redis:latest'
+    container_name: invest-redis
     ports:
-      - '6379'
+      - '6379:6379' # Libera a porta para você acessar se precisar
